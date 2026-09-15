@@ -1,0 +1,495 @@
+{
+  "_comment": "SAMPLE placeholder content so the app runs end-to-end before the real theory data arrives. Replace this whole file once the real question set is ready — the app logic does not change.",
+  "subjects": [
+    {
+      "id": 1,
+      "title": {
+        "ka": "საგზაო მოძრაობის ზოგადი დებულებები",
+        "en": "General provisions",
+        "ru": "Общие положения"
+      }
+    },
+    {
+      "id": 2,
+      "title": {
+        "ka": "საგზაო ნიშნები",
+        "en": "Road signs",
+        "ru": "Дорожные знаки"
+      }
+    },
+    {
+      "id": 3,
+      "title": {
+        "ka": "გზაჯვარედინზე გავლის უპირატესობა",
+        "en": "Right of way at intersections",
+        "ru": "Преимущество на перекрёстках"
+      }
+    },
+    {
+      "id": 4,
+      "title": {
+        "ka": "გაჩერება და დგომა",
+        "en": "Stopping and parking",
+        "ru": "Остановка и стоянка"
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "categories": [
+        "A1",
+        "A",
+        "B1",
+        "B",
+        "BE",
+        "C1",
+        "C",
+        "CE",
+        "D1",
+        "D",
+        "DE"
+      ],
+      "subjectId": 1,
+      "text": {
+        "ka": "აქვს თუ არა მძღოლს უფლება გადააჭარბოს დასაშვებ სიჩქარეს საცხოვრებელ ზონაში?",
+        "en": "Is a driver allowed to exceed the speed limit inside a residential zone?",
+        "ru": "Разрешено ли водителю превышать разрешённую скорость в жилой зоне?"
+      },
+      "image": "1.jpg",
+      "options": [
+        {
+          "ka": "დიახ",
+          "en": "Yes",
+          "ru": "Да"
+        },
+        {
+          "ka": "არა",
+          "en": "No",
+          "ru": "Нет"
+        }
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "ka": "საცხოვრებელ ზონაში მაქსიმალური სიჩქარეა 20 კმ/სთ.",
+        "en": "The maximum speed inside a residential zone is 20 km/h.",
+        "ru": "Максимальная скорость в жилой зоне — 20 км/ч."
+      }
+    },
+    {
+      "id": 2,
+      "categories": [
+        "B1",
+        "B",
+        "BE",
+        "C1",
+        "C",
+        "CE",
+        "D1",
+        "D",
+        "DE"
+      ],
+      "subjectId": 1,
+      "text": {
+        "ka": "სავალდებულოა თუ არა უსაფრთხოების ღვედის გამოყენება წინა სავარძელზე?",
+        "en": "Is wearing a seatbelt mandatory in the front seat?",
+        "ru": "Обязательно ли пристёгивать ремень безопасности на переднем сиденье?"
+      },
+      "image": "2.jpg",
+      "options": [
+        {
+          "ka": "დიახ",
+          "en": "Yes",
+          "ru": "Да"
+        },
+        {
+          "ka": "არა",
+          "en": "No",
+          "ru": "Нет"
+        }
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "ka": "კანონით სავალდებულოა ღვედის გამოყენება ყველა მგზავრისთვის.",
+        "en": "The law requires a seatbelt for every occupant of the vehicle.",
+        "ru": "Закон требует пристёгивать ремень безопасности всем пассажирам."
+      }
+    },
+    {
+      "id": 3,
+      "categories": [
+        "A1",
+        "A",
+        "B1",
+        "B",
+        "BE",
+        "C1",
+        "C",
+        "CE",
+        "D1",
+        "D",
+        "DE"
+      ],
+      "subjectId": 2,
+      "text": {
+        "ka": "რას ნიშნავს სამკუთხა ფორმის ნიშანი წითელი ჩარჩოთი?",
+        "en": "What does a triangular sign with a red border indicate?",
+        "ru": "Что означает треугольный знак с красной каймой?"
+      },
+      "image": "3.jpg",
+      "options": [
+        {
+          "ka": "გაფრთხილება",
+          "en": "Warning",
+          "ru": "Предупреждение"
+        },
+        {
+          "ka": "აკრძალვა",
+          "en": "Prohibition",
+          "ru": "Запрет"
+        },
+        {
+          "ka": "მითითება",
+          "en": "Mandatory instruction",
+          "ru": "Предписание"
+        }
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "ka": "სამკუთხედი წითელი ჩარჩოთი ყოველთვის გაფრთხილების ნიშანია.",
+        "en": "A red-bordered triangle is always a warning sign.",
+        "ru": "Треугольник с красной каймой всегда является предупреждающим знаком."
+      }
+    },
+    {
+      "id": 4,
+      "categories": [
+        "A1",
+        "A",
+        "B1",
+        "B",
+        "BE",
+        "C1",
+        "C",
+        "CE",
+        "D1",
+        "D",
+        "DE"
+      ],
+      "subjectId": 2,
+      "text": {
+        "ka": "წრიული ფორმის ნიშანი წითელი ჩარჩოთი და თეთრი ფონით ჩვეულებრივ აღნიშნავს:",
+        "en": "A round sign with a red border and white background usually means:",
+        "ru": "Круглый знак с красной каймой на белом фоне обычно означает:"
+      },
+      "image": "4.jpg",
+      "options": [
+        {
+          "ka": "აკრძალვას",
+          "en": "A prohibition",
+          "ru": "Запрет"
+        },
+        {
+          "ka": "გაფრთხილებას",
+          "en": "A warning",
+          "ru": "Предупреждение"
+        }
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "ka": "წრე წითელი ჩარჩოთი აკრძალვის ნიშნების ტიპური ფორმაა.",
+        "en": "A red-bordered circle is the typical shape for prohibition signs.",
+        "ru": "Круг с красной каймой — типичная форма запрещающих знаков."
+      }
+    },
+    {
+      "id": 5,
+      "categories": [
+        "A1",
+        "A",
+        "B1",
+        "B",
+        "BE",
+        "C1",
+        "C",
+        "CE",
+        "D1",
+        "D",
+        "DE"
+      ],
+      "subjectId": 1,
+      "text": {
+        "ka": "სად არის აკრძალული გაჩერება საგზაო ნიშნების გარეშეც კი?",
+        "en": "Where is stopping prohibited even without a sign?",
+        "ru": "Где остановка запрещена даже без знака?"
+      },
+      "image": "5.jpg",
+      "options": [
+        {
+          "ka": "ხიდზე",
+          "en": "On a bridge",
+          "ru": "На мосту"
+        },
+        {
+          "ka": "პარკინგზე",
+          "en": "In a parking lot",
+          "ru": "На парковке"
+        }
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "ka": "ხიდებზე და გვირაბებში გაჩერება ყოველთვის აკრძალულია.",
+        "en": "Stopping on bridges and inside tunnels is always prohibited.",
+        "ru": "Остановка на мостах и в тоннелях всегда запрещена."
+      }
+    },
+    {
+      "id": 6,
+      "categories": [
+        "A1",
+        "A",
+        "B1",
+        "B",
+        "BE",
+        "C1",
+        "C",
+        "CE",
+        "D1",
+        "D",
+        "DE"
+      ],
+      "subjectId": 2,
+      "text": {
+        "ka": "ლურჯი ფერის მართკუთხა ნიშანი ჩვეულებრივ აღნიშნავს:",
+        "en": "A blue rectangular sign usually indicates:",
+        "ru": "Синий прямоугольный знак обычно означает:"
+      },
+      "image": "6.jpg",
+      "options": [
+        {
+          "ka": "საინფორმაციო მითითებას",
+          "en": "Informational guidance",
+          "ru": "Информационное указание"
+        },
+        {
+          "ka": "აკრძალვას",
+          "en": "A prohibition",
+          "ru": "Запрет"
+        }
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "ka": "ლურჯი მართკუთხა ნიშნები, ჩვეულებრივ, საინფორმაციო ხასიათისაა.",
+        "en": "Blue rectangular signs are generally informational.",
+        "ru": "Синие прямоугольные знаки обычно носят информационный характер."
+      }
+    },
+    {
+      "id": 7,
+      "categories": [
+        "A1",
+        "A",
+        "B1",
+        "B",
+        "BE",
+        "C1",
+        "C",
+        "CE",
+        "D1",
+        "D",
+        "DE"
+      ],
+      "subjectId": 3,
+      "text": {
+        "ka": "მოუწესრიგებელ გზაჯვარედინზე ვის ეკუთვნის გზის უპირატესობა?",
+        "en": "At an uncontrolled intersection, who has the right of way?",
+        "ru": "На нерегулируемом перекрёстке у кого преимущество?"
+      },
+      "image": "7.jpg",
+      "options": [
+        {
+          "ka": "მარჯვნიდან მომავალ მძღოლს",
+          "en": "The driver approaching from the right",
+          "ru": "Водитель, приближающийся справа"
+        },
+        {
+          "ka": "მარცხნიდან მომავალ მძღოლს",
+          "en": "The driver approaching from the left",
+          "ru": "Водитель, приближающийся слева"
+        },
+        {
+          "ka": "იმას, ვინც პირველი მიუახლოვდა",
+          "en": "Whoever arrives first",
+          "ru": "Кто приехал первым"
+        }
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "ka": "მოუწესრიგებელ გზაჯვარედინზე მოქმედებს „მარჯვენა ხელის“ წესი.",
+        "en": "The \"priority to the right\" rule applies at uncontrolled intersections.",
+        "ru": "На нерегулируемом перекрёстке действует правило «помеха справа»."
+      }
+    },
+    {
+      "id": 8,
+      "categories": [
+        "A1",
+        "A",
+        "B1",
+        "B",
+        "BE",
+        "C1",
+        "C",
+        "CE",
+        "D1",
+        "D",
+        "DE"
+      ],
+      "subjectId": 3,
+      "text": {
+        "ka": "სავალდებულოა თუ არა გზის დათმობა სასწრაფო დახმარების ავტომობილისთვის ხმოვანი და შუქური სიგნალით?",
+        "en": "Must you yield to an emergency vehicle using both siren and lights?",
+        "ru": "Обязаны ли вы уступить дорогу спецтранспорту с включённой сиреной и проблесковым маячком?"
+      },
+      "image": "8.jpg",
+      "options": [
+        {
+          "ka": "დიახ",
+          "en": "Yes",
+          "ru": "Да"
+        },
+        {
+          "ka": "არა",
+          "en": "No",
+          "ru": "Нет"
+        }
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "ka": "ხმოვანი და შუქური სიგნალით მოძრავ სატრანსპორტო საშუალებას ყველა ვალდებულია დაუთმოს გზა.",
+        "en": "Every road user must give way to a vehicle running both audible and visual emergency signals.",
+        "ru": "Все участники движения обязаны уступить дорогу транспорту со звуковым и световым спецсигналом."
+      }
+    },
+    {
+      "id": 9,
+      "categories": [
+        "D1",
+        "D",
+        "DE"
+      ],
+      "subjectId": 4,
+      "text": {
+        "ka": "დასაშვებია თუ არა გაჩერება საზოგადოებრივი ტრანსპორტის გაჩერებასთან 15 მეტრში?",
+        "en": "Is stopping allowed within 15 metres of a public transport stop?",
+        "ru": "Разрешена ли остановка ближе 15 метров от остановки общественного транспорта?"
+      },
+      "image": "9.jpg",
+      "options": [
+        {
+          "ka": "დიახ",
+          "en": "Yes",
+          "ru": "Да"
+        },
+        {
+          "ka": "არა",
+          "en": "No",
+          "ru": "Нет"
+        }
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "ka": "გაჩერების ნიშნიდან 15 მეტრის რადიუსში გაჩერება აკრძალულია.",
+        "en": "Stopping is prohibited within 15 metres of a public transport stop sign.",
+        "ru": "Остановка запрещена в радиусе 15 метров от знака остановки общественного транспорта."
+      }
+    },
+    {
+      "id": 10,
+      "categories": [
+        "B1",
+        "B",
+        "BE",
+        "C1",
+        "C",
+        "CE",
+        "D1",
+        "D",
+        "DE"
+      ],
+      "subjectId": 4,
+      "text": {
+        "ka": "რომელი შემთხვევაა დგომა (და არა უბრალოდ გაჩერება)?",
+        "en": "Which of these counts as parking rather than a brief stop?",
+        "ru": "Что из этого считается стоянкой, а не кратковременной остановкой?"
+      },
+      "image": "10.jpg",
+      "options": [
+        {
+          "ka": "მგზავრის ჩასხდომა",
+          "en": "Picking up a passenger",
+          "ru": "Посадка пассажира"
+        },
+        {
+          "ka": "ტვირთის დაუყოვნებელი დაცლა",
+          "en": "Immediate unloading of cargo",
+          "ru": "Немедленная разгрузка груза"
+        },
+        {
+          "ka": "ავტომობილის დატოვება 10 წუთზე მეტ ხანს",
+          "en": "Leaving the car for more than 10 minutes",
+          "ru": "Оставление автомобиля более чем на 10 минут"
+        }
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "ka": "დგომა გულისხმობს გაჩერებას, რომელიც არ არის დაკავშირებული მგზავრის ჩასხდომა-გადმოსხდომასთან ან ტვირთვა-გადმოტვირთვასთან.",
+        "en": "Parking is a stop not related to picking up/dropping off passengers or loading/unloading cargo.",
+        "ru": "Стоянка — это остановка, не связанная с посадкой-высадкой пассажиров или погрузкой-разгрузкой."
+      }
+    },
+    {
+      "id": 11,
+      "categories": [
+        "B1",
+        "B",
+        "BE"
+      ],
+      "subjectId": 3,
+      "text": {
+        "ka": "რომელი სატრანსპორტო საშუალების მძღოლის მიმართ წარმოექმნება გზის დათმობის ვალდებულება მსუბუქი ავტომობილის მძღოლს ისრის მიმართულებით მოძრაობის შემთხვევაში?",
+        "en": "Toward which vehicle's driver must the car driver yield, when proceeding in the direction of the arrow?",
+        "ru": "По отношению к водителю какого транспортного средства у водителя легкового автомобиля возникает обязанность уступить дорогу при движении в направлении стрелки?"
+      },
+      "image": "11.jpg",
+      "options": [
+        {
+          "ka": "ყველა სატრანსპორტო საშუალების მძღოლის მიმართ",
+          "en": "Toward all vehicle drivers",
+          "ru": "По отношению ко всем водителям транспортных средств"
+        },
+        {
+          "ka": "მხოლოდ სატვირთო ავტომობილის მძღოლის მიმართ",
+          "en": "Only toward the truck driver",
+          "ru": "Только по отношению к водителю грузовика"
+        },
+        {
+          "ka": "არც ერთი სატრანსპორტო საშუალების მძღოლის მიმართ",
+          "en": "Toward none of the vehicle drivers",
+          "ru": "Ни по отношению к одному из водителей транспортных средств"
+        },
+        {
+          "ka": "მხოლოდ ტრამვაის მძღოლის მიმართ",
+          "en": "Only toward the tram driver",
+          "ru": "Только по отношению к водителю трамвая"
+        }
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "ka": "იხილეთ სურათზე გამოსახული პრიორიტეტის ნიშნები და მონიშნული მიმართულებები ამ კონკრეტული სიტუაციისთვის.",
+        "en": "See the priority signage and marked directions shown in the image for this specific scenario.",
+        "ru": "См. знаки приоритета и отмеченные направления на изображении для этой конкретной ситуации."
+      }
+    }
+  ]
+}
