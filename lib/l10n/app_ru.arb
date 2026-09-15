@@ -1,0 +1,17 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Автошкола БУКИ",
+  "bySubject": "По темам",
+  "allQuestions": "Все вопросы",
+  "exam": "Экзамен",
+  "questionCounter": "{current}/{total}",
+  "@questionCounter": {
+    "placeholders": { "current": {}, "total": {} }
+  },
+  "examSubmit": "Завершить экзамен",
+  "examResultTitle": "Результат экзамена",
+  "examPassed": "Сдано",
+  "examFailed": "Не сдано",
+  "backToHome": "На главную",
+  "noQuestionsYet": "Для этой категории пока нет вопросов."
+}

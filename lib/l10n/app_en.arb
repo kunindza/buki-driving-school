@@ -1,0 +1,17 @@
+{
+  "@@locale": "en",
+  "appTitle": "BUKI Driving School",
+  "bySubject": "By Subject",
+  "allQuestions": "All Questions",
+  "exam": "Exam",
+  "questionCounter": "{current}/{total}",
+  "@questionCounter": {
+    "placeholders": { "current": {}, "total": {} }
+  },
+  "examSubmit": "Finish exam",
+  "examResultTitle": "Exam result",
+  "examPassed": "Passed",
+  "examFailed": "Not passed",
+  "backToHome": "Back to home",
+  "noQuestionsYet": "No questions loaded for this category yet."
+}

@@ -1,0 +1,17 @@
+{
+  "@@locale": "ka",
+  "appTitle": "საავტომობილო სკოლა ბუკი",
+  "bySubject": "თემების მიხედვით",
+  "allQuestions": "ყველა კითხვა",
+  "exam": "გამოცდა",
+  "questionCounter": "{current}/{total}",
+  "@questionCounter": {
+    "placeholders": { "current": {}, "total": {} }
+  },
+  "examSubmit": "დასრულება",
+  "examResultTitle": "გამოცდის შედეგი",
+  "examPassed": "ჩაბარებულია",
+  "examFailed": "ჩაიჭრა",
+  "backToHome": "მთავარ გვერდზე დაბრუნება",
+  "noQuestionsYet": "ამ კატეგორიისთვის კითხვები ჯერ არ არის ატვირთული."
+}
