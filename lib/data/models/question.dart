@@ -9,6 +9,7 @@ class Question {
     required this.options,
     required this.correctIndex,
     this.image,
+    this.answerMedia,
     this.explanation,
   });
 
@@ -19,6 +20,11 @@ class Question {
 
   /// Asset path under assets/images/questions/, or null for text-only questions.
   final String? image;
+
+  /// Asset path under assets/images/answers/ for the animated clip shown
+  /// once the question is answered (arrows recolored to the correct path),
+  /// or null when only the static [image] and text explanation are available.
+  final String? answerMedia;
 
   /// 2-4 answer options, each localized the same way as [text].
   final List<LocalizedText> options;
@@ -34,6 +40,7 @@ class Question {
       subjectId: json['subjectId'] as int,
       text: Map<String, String>.from(json['text'] as Map),
       image: json['image'] as String?,
+      answerMedia: json['answerMedia'] as String?,
       options: (json['options'] as List)
           .map((o) => Map<String, String>.from(o as Map))
           .toList(),

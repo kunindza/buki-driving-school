@@ -36,4 +36,5 @@ flutter:
   assets:
     - assets/data/
     - assets/images/questions/
+    - assets/images/answers/
     - assets/brand/

@@ -54,7 +54,11 @@ class _QuestionCardState extends State<QuestionCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _QuestionImage(imagePath: question.image),
+          _QuestionImage(
+            imagePath: question.image,
+            answerMediaPath: question.answerMedia,
+            answered: answered,
+          ),
           const SizedBox(height: 16),
           Text(
             question.text.resolve(widget.languageCode),
@@ -106,19 +110,36 @@ class _QuestionCardState extends State<QuestionCard> {
 }
 
 class _QuestionImage extends StatelessWidget {
-  const _QuestionImage({required this.imagePath});
+  const _QuestionImage({
+    required this.imagePath,
+    required this.answerMediaPath,
+    required this.answered,
+  });
 
   final String? imagePath;
 
+  /// Animated clip (arrows recolored to the correct path) shown in place of
+  /// the static photo once the question has been answered, when available.
+  final String? answerMediaPath;
+  final bool answered;
+
   @override
   Widget build(BuildContext context) {
+    final showAnswerMedia = answered && answerMediaPath != null;
+    final path = showAnswerMedia
+        ? 'assets/images/answers/$answerMediaPath'
+        : imagePath == null
+        ? null
+        : 'assets/images/questions/$imagePath';
+
     return ClipRRect(
       borderRadius: const BorderRadius.vertical(
         top: Radius.circular(AppTheme.radius),
       ),
+      // Matches the real ticket photos' native aspect ratio (700x323).
       child: AspectRatio(
-        aspectRatio: 4 / 3,
-        child: imagePath == null
+        aspectRatio: 700 / 323,
+        child: path == null
             ? Container(
                 color: AppTheme.surface,
                 child: const Icon(
@@ -127,10 +148,7 @@ class _QuestionImage extends StatelessWidget {
                   color: Colors.white38,
                 ),
               )
-            : Image.asset(
-                'assets/images/questions/$imagePath',
-                fit: BoxFit.cover,
-              ),
+            : Image.asset(path, fit: BoxFit.cover, gaplessPlayback: true),
       ),
     );
   }
