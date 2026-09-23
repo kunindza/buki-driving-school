@@ -5,14 +5,14 @@ import '../../../data/models/localized_text.dart';
 import '../../../data/models/question.dart';
 
 /// Displays one question: image (or placeholder), text, answer options and,
-/// once answered, correct/incorrect feedback plus an explanation toggle.
-/// Shared by "By Subject", "All Questions" and the exam so answer feedback
-/// looks identical everywhere.
+/// once answered, correct/incorrect feedback plus a button that opens the
+/// explanation in a dialog. Shared by "By Subject", "All Questions" and the
+/// exam so answer feedback looks identical everywhere.
 ///
 /// Renders two option styles: a plain centered button for yes/no questions
 /// (exactly 2 options), and a numbered left-aligned row for multiple-choice
 /// questions (3+ options).
-class QuestionCard extends StatefulWidget {
+class QuestionCard extends StatelessWidget {
   const QuestionCard({
     super.key,
     required this.question,
@@ -29,24 +29,8 @@ class QuestionCard extends StatefulWidget {
   final ValueChanged<int> onOptionSelected;
 
   @override
-  State<QuestionCard> createState() => _QuestionCardState();
-}
-
-class _QuestionCardState extends State<QuestionCard> {
-  bool _showExplanation = false;
-
-  @override
-  void didUpdateWidget(covariant QuestionCard oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.question.id != widget.question.id) {
-      _showExplanation = false;
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final question = widget.question;
-    final answered = widget.selectedOptionIndex != null;
+    final answered = selectedOptionIndex != null;
     final numbered = question.options.length > 2;
 
     return SingleChildScrollView(
@@ -61,7 +45,7 @@ class _QuestionCardState extends State<QuestionCard> {
           ),
           const SizedBox(height: 16),
           Text(
-            question.text.resolve(widget.languageCode),
+            question.text.resolve(languageCode),
             style: Theme.of(context).textTheme.titleMedium
                 ?.copyWith(color: Colors.white),
           ),
@@ -70,38 +54,32 @@ class _QuestionCardState extends State<QuestionCard> {
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: _OptionButton(
-                label: question.options[i].resolve(widget.languageCode),
+                label: question.options[i].resolve(languageCode),
                 number: numbered ? i + 1 : null,
-                state: _stateFor(i, question),
-                onTap: answered ? null : () => widget.onOptionSelected(i),
+                state: _stateFor(i),
+                onTap: answered ? null : () => onOptionSelected(i),
               ),
             ),
           if (answered && question.explanation != null) ...[
             const SizedBox(height: 4),
             Center(
               child: _InfoButton(
-                active: _showExplanation,
-                onTap: () =>
-                    setState(() => _showExplanation = !_showExplanation),
-              ),
-            ),
-            if (_showExplanation)
-              Padding(
-                padding: const EdgeInsets.only(top: 12),
-                child: Text(
-                  question.explanation!.resolve(widget.languageCode),
-                  style: Theme.of(context).textTheme.bodyMedium
-                      ?.copyWith(color: Colors.white70),
+                onTap: () => showDialog<void>(
+                  context: context,
+                  builder: (_) => _ExplanationDialog(
+                    text: question.explanation!.resolve(languageCode),
+                  ),
                 ),
               ),
+            ),
           ],
         ],
       ),
     );
   }
 
-  _OptionState _stateFor(int index, Question question) {
-    final selected = widget.selectedOptionIndex;
+  _OptionState _stateFor(int index) {
+    final selected = selectedOptionIndex;
     if (selected == null) return _OptionState.neutral;
     if (index == question.correctIndex) return _OptionState.correct;
     if (index == selected) return _OptionState.incorrect;
@@ -155,9 +133,8 @@ class _QuestionImage extends StatelessWidget {
 }
 
 class _InfoButton extends StatelessWidget {
-  const _InfoButton({required this.active, required this.onTap});
+  const _InfoButton({required this.onTap});
 
-  final bool active;
   final VoidCallback onTap;
 
   @override
@@ -171,6 +148,69 @@ class _InfoButton extends StatelessWidget {
         child: const Padding(
           padding: EdgeInsets.all(8),
           child: Icon(Icons.info_outline, color: Colors.black87, size: 22),
+        ),
+      ),
+    );
+  }
+}
+
+/// The explanation, shown as a centered dialog over a dimmed background
+/// instead of expanding inline — so it's always fully visible without
+/// scrolling, regardless of how much is above it on the question screen.
+class _ExplanationDialog extends StatelessWidget {
+  const _ExplanationDialog({required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      backgroundColor: AppTheme.surface,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppTheme.radius),
+      ),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxHeight: 420),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  const Icon(
+                    Icons.info_outline,
+                    color: AppTheme.amber,
+                    size: 22,
+                  ),
+                  const Spacer(),
+                  InkWell(
+                    onTap: () => Navigator.of(context).pop(),
+                    borderRadius: BorderRadius.circular(16),
+                    child: const Padding(
+                      padding: EdgeInsets.all(4),
+                      child: Icon(Icons.close, color: Colors.white54, size: 20),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              Flexible(
+                child: SingleChildScrollView(
+                  child: Text(
+                    text,
+                    style: const TextStyle(
+                      color: Colors.white70,
+                      fontSize: 15,
+                      height: 1.5,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
