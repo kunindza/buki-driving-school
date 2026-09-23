@@ -6,7 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../app/providers.dart';
 import '../../app/theme.dart';
 import '../../app/widgets/brand_mark.dart';
+import '../../data/models/question.dart';
 import '../../l10n/app_localizations.dart';
+import '../question/image_prefetch.dart';
 import '../question/widgets/question_card.dart';
 import 'exam_config.dart';
 import 'exam_result_screen.dart';
@@ -71,6 +73,16 @@ class _ExamScreenState extends ConsumerState<ExamScreen> {
     return '$m:$s';
   }
 
+  /// Warms the cache for the adjacent questions' photos so moving between
+  /// them doesn't wait on a fresh network fetch on the web build.
+  void _prefetchNeighbors(List<Question> questions) {
+    for (final i in [_index - 1, _index + 1]) {
+      if (i >= 0 && i < questions.length) {
+        precacheQuestionImage(context, questions[i]);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -93,6 +105,7 @@ class _ExamScreenState extends ConsumerState<ExamScreen> {
 
             _startTimerOnce();
             final question = session.questions[_index];
+            _prefetchNeighbors(session.questions);
 
             return Column(
               children: [

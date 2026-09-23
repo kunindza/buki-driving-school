@@ -4,6 +4,7 @@ import '../../app/theme.dart';
 import '../../app/widgets/brand_mark.dart';
 import '../../data/models/question.dart';
 import '../../l10n/app_localizations.dart';
+import 'image_prefetch.dart';
 import 'widgets/question_card.dart';
 
 /// Sequential question browser shared by "By Subject" and "All Questions" —
@@ -32,6 +33,16 @@ class _QuestionFlowScreenState extends State<QuestionFlowScreen> {
 
   int get _wrongCount => _answers.length - _correctCount;
 
+  /// Warms the cache for the adjacent questions' photos so tapping
+  /// next/previous doesn't wait on a fresh network fetch on the web build.
+  void _prefetchNeighbors() {
+    for (final i in [_index - 1, _index + 1]) {
+      if (i >= 0 && i < widget.questions.length) {
+        precacheQuestionImage(context, widget.questions[i]);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -44,6 +55,7 @@ class _QuestionFlowScreenState extends State<QuestionFlowScreen> {
     }
 
     final question = widget.questions[_index];
+    _prefetchNeighbors();
 
     return Scaffold(
       appBar: AppBar(
