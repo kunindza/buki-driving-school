@@ -378,11 +378,7 @@ class _CategoryStepper extends ConsumerWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(
-                  Icons.directions_car_filled_rounded,
-                  color: Colors.white,
-                  size: 34,
-                ),
+                Icon(_vehicleIconFor(category), color: Colors.white, size: 34),
                 const SizedBox(height: 6),
                 Text(
                   category,
@@ -404,6 +400,16 @@ class _CategoryStepper extends ConsumerWidget {
     );
   }
 }
+
+/// The category stepper's icon changes with the selected category so it
+/// actually depicts the vehicle type, not just a generic car.
+IconData _vehicleIconFor(String category) => switch (category) {
+  'AM' => Icons.moped_rounded,
+  'A1' || 'A' => Icons.two_wheeler_rounded,
+  'C1' || 'C' => Icons.local_shipping_rounded,
+  'D1' || 'D' => Icons.directions_bus_filled_rounded,
+  _ => Icons.directions_car_filled_rounded, // B1, B
+};
 
 class _StepArrow extends StatelessWidget {
   const _StepArrow({required this.icon, required this.onTap});
