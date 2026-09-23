@@ -38,12 +38,17 @@ class QuestionCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _QuestionImage(
-            imagePath: question.image,
-            answerMediaPath: question.answerMedia,
-            answered: answered,
-          ),
-          const SizedBox(height: 16),
+          // Roughly half the real ticket bank is text-only (legal/procedural
+          // questions with no photo). Skip the image slot entirely for
+          // those rather than showing an empty box that reads as broken.
+          if (question.image != null) ...[
+            _QuestionImage(
+              imagePath: question.image!,
+              answerMediaPath: question.answerMedia,
+              answered: answered,
+            ),
+            const SizedBox(height: 16),
+          ],
           Text(
             question.text.resolve(languageCode),
             style: Theme.of(context).textTheme.titleMedium
@@ -87,6 +92,8 @@ class QuestionCard extends StatelessWidget {
   }
 }
 
+/// Shown only when the question has a photo — text-only questions skip
+/// this widget entirely (see [QuestionCard.build]).
 class _QuestionImage extends StatelessWidget {
   const _QuestionImage({
     required this.imagePath,
@@ -94,7 +101,7 @@ class _QuestionImage extends StatelessWidget {
     required this.answered,
   });
 
-  final String? imagePath;
+  final String imagePath;
 
   /// Animated clip (arrows recolored to the correct path) shown in place of
   /// the static photo once the question has been answered, when available.
@@ -106,8 +113,6 @@ class _QuestionImage extends StatelessWidget {
     final showAnswerMedia = answered && answerMediaPath != null;
     final path = showAnswerMedia
         ? 'assets/images/answers/$answerMediaPath'
-        : imagePath == null
-        ? null
         : 'assets/images/questions/$imagePath';
 
     return ClipRRect(
@@ -117,16 +122,7 @@ class _QuestionImage extends StatelessWidget {
       // Matches the real ticket photos' native aspect ratio (700x323).
       child: AspectRatio(
         aspectRatio: 700 / 323,
-        child: path == null
-            ? Container(
-                color: AppTheme.surface,
-                child: const Icon(
-                  Icons.directions_car_filled_outlined,
-                  size: 48,
-                  color: Colors.white38,
-                ),
-              )
-            : Image.asset(path, fit: BoxFit.cover, gaplessPlayback: true),
+        child: Image.asset(path, fit: BoxFit.cover, gaplessPlayback: true),
       ),
     );
   }
