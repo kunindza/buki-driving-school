@@ -4,7 +4,7 @@ import '../../../app/theme.dart';
 import '../../../data/models/localized_text.dart';
 import '../../../data/models/question.dart';
 
-/// Displays one question: image (or placeholder), text, answer options and,
+/// Displays one question: photo (when it has one), text, answer options and,
 /// once answered, correct/incorrect feedback plus a button that opens the
 /// explanation in a dialog. Shared by "By Subject", "All Questions" and the
 /// exam so answer feedback looks identical everywhere.
