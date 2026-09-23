@@ -11,7 +11,7 @@
   "examSubmit": "დასრულება",
   "examResultTitle": "გამოცდის შედეგი",
   "examPassed": "ჩაბარებულია",
-  "examFailed": "ჩაიჭრა",
+  "examFailed": "სამწუხაროდ გამოცდა ვერ ჩააბარეთ",
   "examCorrectLabel": "სწორი",
   "examWrongLabel": "არასწორი",
   "backToHome": "მთავარ გვერდზე დაბრუნება",

@@ -36,7 +36,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get examPassed => 'ჩაბარებულია';
 
   @override
-  String get examFailed => 'ჩაიჭრა';
+  String get examFailed => 'სამწუხაროდ გამოცდა ვერ ჩააბარეთ';
 
   @override
   String get examCorrectLabel => 'სწორი';
