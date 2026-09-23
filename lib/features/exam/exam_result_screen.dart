@@ -30,6 +30,7 @@ class ExamResultScreen extends StatelessWidget {
               const SizedBox(height: 16),
               Text(
                 passed ? l10n.examPassed : l10n.examFailed,
+                textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               const SizedBox(height: 8),
