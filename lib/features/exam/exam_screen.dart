@@ -60,6 +60,11 @@ class _ExamScreenState extends ConsumerState<ExamScreen> {
     });
   }
 
+  void _answer(ExamSession session, int option) {
+    setState(() => session.answer(_index, option));
+    if (session.failed) _finish();
+  }
+
   void _finish() {
     _timer?.cancel();
     Navigator.of(context).pushReplacement(
@@ -81,6 +86,16 @@ class _ExamScreenState extends ConsumerState<ExamScreen> {
         precacheQuestionImage(context, questions[i]);
       }
     }
+  }
+
+  /// The index of the first unanswered question — questions past this one
+  /// aren't reachable yet, matching the "answer before moving on" rule.
+  /// Going backward is always allowed, so this only gates forward movement.
+  int _frontier(ExamSession session) {
+    for (var i = 0; i < session.questions.length; i++) {
+      if (session.answerFor(i) == null) return i;
+    }
+    return session.questions.length;
   }
 
   @override
@@ -105,6 +120,7 @@ class _ExamScreenState extends ConsumerState<ExamScreen> {
 
             _startTimerOnce();
             final question = session.questions[_index];
+            final frontier = _frontier(session);
             _prefetchNeighbors(session.questions);
 
             return Column(
@@ -147,17 +163,17 @@ class _ExamScreenState extends ConsumerState<ExamScreen> {
                     question: question,
                     languageCode: widget.languageCode,
                     selectedOptionIndex: session.answerFor(_index),
-                    onOptionSelected: (option) =>
-                        setState(() => session.answer(_index, option)),
+                    onOptionSelected: (option) => _answer(session, option),
                   ),
                 ),
                 _PageStrip(
-                  count: session.questions.length,
+                  session: session,
                   current: _index,
+                  frontier: frontier,
                   onPrevious: _index > 0
                       ? () => setState(() => _index--)
                       : null,
-                  onNext: _index < session.questions.length - 1
+                  onNext: _index < frontier
                       ? () => setState(() => _index++)
                       : null,
                   onJump: (i) => setState(() => _index = i),
@@ -227,15 +243,19 @@ class _StatBox extends StatelessWidget {
 
 class _PageStrip extends StatelessWidget {
   const _PageStrip({
-    required this.count,
+    required this.session,
     required this.current,
+    required this.frontier,
     required this.onPrevious,
     required this.onNext,
     required this.onJump,
   });
 
-  final int count;
+  final ExamSession session;
   final int current;
+
+  /// Index of the first unanswered question — jumping past it is locked.
+  final int frontier;
   final VoidCallback? onPrevious;
   final VoidCallback? onNext;
   final ValueChanged<int> onJump;
@@ -253,11 +273,19 @@ class _PageStrip extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: count,
+              itemCount: session.questions.length,
               itemBuilder: (context, i) {
                 final selected = i == current;
+                final reachable = i <= frontier;
+                final answer = session.answerFor(i);
+                final answerColor = answer == null
+                    ? null
+                    : answer == session.questions[i].correctIndex
+                    ? AppTheme.correct
+                    : AppTheme.incorrect;
+
                 return InkWell(
-                  onTap: () => onJump(i),
+                  onTap: reachable ? () => onJump(i) : null,
                   child: Container(
                     width: 32,
                     alignment: Alignment.center,
@@ -274,7 +302,9 @@ class _PageStrip extends StatelessWidget {
                     child: Text(
                       '${i + 1}',
                       style: TextStyle(
-                        color: selected ? Colors.white : Colors.white54,
+                        color:
+                            answerColor ??
+                            (reachable ? Colors.white54 : Colors.white24),
                         fontWeight: selected
                             ? FontWeight.bold
                             : FontWeight.normal,

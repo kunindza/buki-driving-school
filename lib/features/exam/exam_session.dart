@@ -31,5 +31,10 @@ class ExamSession {
 
   int get wrongCount => answeredCount - correctCount;
 
-  bool get passed => correctCount >= ExamConfig.passThreshold;
+  /// True once too many wrong answers have piled up to still pass, even if
+  /// the exam hasn't finished — this is checked as it happens, not just at
+  /// the end, so an exam can be failed early.
+  bool get failed => wrongCount > ExamConfig.maxWrongToPass;
+
+  bool get passed => !failed && isComplete;
 }

@@ -12,6 +12,8 @@
   "examResultTitle": "გამოცდის შედეგი",
   "examPassed": "ჩაბარებულია",
   "examFailed": "ჩაიჭრა",
+  "examCorrectLabel": "სწორი",
+  "examWrongLabel": "არასწორი",
   "backToHome": "მთავარ გვერდზე დაბრუნება",
   "noQuestionsYet": "ამ კატეგორიისთვის კითხვები ჯერ არ არის ატვირთული."
 }

@@ -39,6 +39,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get examFailed => 'Not passed';
 
   @override
+  String get examCorrectLabel => 'correct';
+
+  @override
+  String get examWrongLabel => 'wrong';
+
+  @override
   String get backToHome => 'Back to home';
 
   @override

@@ -12,6 +12,8 @@
   "examResultTitle": "Результат экзамена",
   "examPassed": "Сдано",
   "examFailed": "Не сдано",
+  "examCorrectLabel": "верно",
+  "examWrongLabel": "неверно",
   "backToHome": "На главную",
   "noQuestionsYet": "Для этой категории пока нет вопросов."
 }

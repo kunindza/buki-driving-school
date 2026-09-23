@@ -154,6 +154,18 @@ abstract class AppLocalizations {
   /// **'Not passed'**
   String get examFailed;
 
+  /// No description provided for @examCorrectLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'correct'**
+  String get examCorrectLabel;
+
+  /// No description provided for @examWrongLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'wrong'**
+  String get examWrongLabel;
+
   /// No description provided for @backToHome.
   ///
   /// In en, this message translates to:

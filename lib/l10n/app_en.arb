@@ -12,6 +12,8 @@
   "examResultTitle": "Exam result",
   "examPassed": "Passed",
   "examFailed": "Not passed",
+  "examCorrectLabel": "correct",
+  "examWrongLabel": "wrong",
   "backToHome": "Back to home",
   "noQuestionsYet": "No questions loaded for this category yet."
 }

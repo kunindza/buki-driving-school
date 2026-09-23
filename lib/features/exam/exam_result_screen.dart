@@ -33,7 +33,28 @@ class ExamResultScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               const SizedBox(height: 8),
-              Text('${session.correctCount} / ${session.questions.length}'),
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: '${session.correctCount}',
+                      style: const TextStyle(
+                        color: AppTheme.correct,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextSpan(text: ' ${l10n.examCorrectLabel} · '),
+                    TextSpan(
+                      text: '${session.wrongCount}',
+                      style: const TextStyle(
+                        color: AppTheme.incorrect,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextSpan(text: ' ${l10n.examWrongLabel}'),
+                  ],
+                ),
+              ),
               const SizedBox(height: 32),
               FilledButton(
                 onPressed: () =>

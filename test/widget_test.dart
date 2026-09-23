@@ -46,22 +46,53 @@ void main() {
       expect(session.isComplete, isTrue);
     });
 
-    test('passes only at or above the configured threshold', () {
+    test(
+      'passes once every question is answered within the wrong-answer limit',
+      () {
+        final questions = List.generate(
+          ExamConfig.questionCount,
+          (i) => _question(id: i, correctIndex: 0),
+        );
+        final session = ExamSession(questions);
+
+        for (var i = 0; i < ExamConfig.maxWrongToPass; i++) {
+          session.answer(i, 1); // wrong
+        }
+        for (var i = ExamConfig.maxWrongToPass; i < questions.length; i++) {
+          session.answer(i, 0); // correct
+        }
+
+        expect(session.wrongCount, ExamConfig.maxWrongToPass);
+        expect(session.passed, isTrue);
+      },
+    );
+
+    test('fails as soon as wrong answers exceed the limit, even mid-exam', () {
       final questions = List.generate(
         ExamConfig.questionCount,
         (i) => _question(id: i, correctIndex: 0),
       );
       final session = ExamSession(questions);
 
-      // Answer just enough correctly to sit one below the pass threshold.
-      for (var i = 0; i < ExamConfig.passThreshold - 1; i++) {
-        session.answer(i, 0);
+      for (var i = 0; i <= ExamConfig.maxWrongToPass; i++) {
+        session.answer(i, 1); // wrong
       }
-      expect(session.passed, isFalse);
 
-      // One more correct answer should cross the threshold.
-      session.answer(ExamConfig.passThreshold - 1, 0);
-      expect(session.passed, isTrue);
+      expect(session.isComplete, isFalse);
+      expect(session.failed, isTrue);
+      expect(session.passed, isFalse);
+    });
+
+    test('does not pass an incomplete exam even with no wrong answers', () {
+      final session = ExamSession([
+        _question(id: 1, correctIndex: 0),
+        _question(id: 2, correctIndex: 0),
+      ]);
+
+      session.answer(0, 0);
+
+      expect(session.failed, isFalse);
+      expect(session.passed, isFalse);
     });
 
     test('re-answering a question overwrites the previous answer', () {

@@ -39,6 +39,12 @@ class AppLocalizationsKa extends AppLocalizations {
   String get examFailed => 'ჩაიჭრა';
 
   @override
+  String get examCorrectLabel => 'სწორი';
+
+  @override
+  String get examWrongLabel => 'არასწორი';
+
+  @override
   String get backToHome => 'მთავარ გვერდზე დაბრუნება';
 
   @override
