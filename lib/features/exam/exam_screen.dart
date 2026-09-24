@@ -187,12 +187,6 @@ class _ExamScreenState extends ConsumerState<ExamScreen> {
                   session: session,
                   current: _index,
                   frontier: frontier,
-                  onPrevious: _index > 0
-                      ? () => setState(() => _index--)
-                      : null,
-                  onNext: _index < frontier
-                      ? () => setState(() => _index++)
-                      : null,
                   onJump: (i) => setState(() => _index = i),
                 ),
                 Padding(
@@ -258,13 +252,14 @@ class _StatBox extends StatelessWidget {
   }
 }
 
+/// The row of question numbers — tapping any answered (or the current)
+/// number jumps there directly, so this is the only way to go back. Moving
+/// forward is handled entirely by the "Next question" button above.
 class _PageStrip extends StatelessWidget {
   const _PageStrip({
     required this.session,
     required this.current,
     required this.frontier,
-    required this.onPrevious,
-    required this.onNext,
     required this.onJump,
   });
 
@@ -273,67 +268,50 @@ class _PageStrip extends StatelessWidget {
 
   /// Index of the first unanswered question — jumping past it is locked.
   final int frontier;
-  final VoidCallback? onPrevious;
-  final VoidCallback? onNext;
   final ValueChanged<int> onJump;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 44,
-      child: Row(
-        children: [
-          IconButton(
-            onPressed: onPrevious,
-            icon: const Icon(Icons.chevron_left),
-          ),
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: session.questions.length,
-              itemBuilder: (context, i) {
-                final selected = i == current;
-                final reachable = i <= frontier;
-                final answer = session.answerFor(i);
-                final answerColor = answer == null
-                    ? null
-                    : answer == session.questions[i].correctIndex
-                    ? AppTheme.correct
-                    : AppTheme.incorrect;
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: session.questions.length,
+        itemBuilder: (context, i) {
+          final selected = i == current;
+          final reachable = i <= frontier;
+          final answer = session.answerFor(i);
+          final answerColor = answer == null
+              ? null
+              : answer == session.questions[i].correctIndex
+              ? AppTheme.correct
+              : AppTheme.incorrect;
 
-                return InkWell(
-                  onTap: reachable ? () => onJump(i) : null,
-                  child: Container(
-                    width: 32,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: selected
-                              ? AppTheme.brandPink
-                              : Colors.transparent,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      '${i + 1}',
-                      style: TextStyle(
-                        color:
-                            answerColor ??
-                            (reachable ? Colors.white54 : Colors.white24),
-                        fontWeight: selected
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                      ),
-                    ),
+          return InkWell(
+            onTap: reachable ? () => onJump(i) : null,
+            child: Container(
+              width: 32,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: selected ? AppTheme.brandPink : Colors.transparent,
+                    width: 2,
                   ),
-                );
-              },
+                ),
+              ),
+              child: Text(
+                '${i + 1}',
+                style: TextStyle(
+                  color:
+                      answerColor ??
+                      (reachable ? Colors.white54 : Colors.white24),
+                  fontWeight: selected ? FontWeight.bold : FontWeight.normal,
+                ),
+              ),
             ),
-          ),
-          IconButton(onPressed: onNext, icon: const Icon(Icons.chevron_right)),
-        ],
+          );
+        },
       ),
     );
   }
