@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../app/providers.dart';
 import '../../app/theme.dart';
 import '../../data/models/app_language.dart';
+import '../../data/models/license_category.dart';
 import '../../l10n/app_localizations.dart';
 import '../all_questions/all_questions_screen.dart';
 import '../exam/exam_screen.dart';
@@ -374,14 +375,14 @@ class _CategoryStepper extends ConsumerWidget {
             onTap: () => notifier.step(-1),
           ),
           SizedBox(
-            width: 84,
+            width: 96,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(_vehicleIconFor(category), color: Colors.white, size: 34),
-                const SizedBox(height: 6),
+                Icon(_vehicleIconFor(category), color: Colors.white, size: 46),
+                const SizedBox(height: 8),
                 Text(
-                  category,
+                  licenseCategoryLabel(category),
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 19,
@@ -402,13 +403,17 @@ class _CategoryStepper extends ConsumerWidget {
 }
 
 /// The category stepper's icon changes with the selected category so it
-/// actually depicts the vehicle type, not just a generic car.
+/// actually depicts the vehicle type, not just a generic car. C1/C and
+/// D1/D each get a distinct icon (outline vs filled, van vs full bus) so
+/// the lighter and heavier weight class read differently at a glance.
 IconData _vehicleIconFor(String category) => switch (category) {
   'AM' => Icons.moped_rounded,
-  'A1' || 'A' => Icons.two_wheeler_rounded,
-  'C1' || 'C' => Icons.local_shipping_rounded,
-  'D1' || 'D' => Icons.directions_bus_filled_rounded,
-  _ => Icons.directions_car_filled_rounded, // B1, B
+  'A' => Icons.two_wheeler_rounded,
+  'C1' => Icons.local_shipping_outlined,
+  'C' => Icons.local_shipping_rounded,
+  'D1' => Icons.airport_shuttle_rounded,
+  'D' => Icons.directions_bus_filled_rounded,
+  _ => Icons.directions_car_filled_rounded, // B
 };
 
 class _StepArrow extends StatelessWidget {
