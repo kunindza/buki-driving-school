@@ -166,6 +166,23 @@ class _ExamScreenState extends ConsumerState<ExamScreen> {
                     onOptionSelected: (option) => _answer(session, option),
                   ),
                 ),
+                // Appears the moment the current question is answered, so
+                // it's obvious what to do next instead of relying on the
+                // small chevron in the page strip below.
+                if (session.answerFor(_index) != null &&
+                    _index < session.questions.length - 1)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: FilledButton.icon(
+                        onPressed: () => setState(() => _index++),
+                        icon: const Icon(Icons.arrow_forward_rounded),
+                        label: Text(l10n.nextQuestion),
+                      ),
+                    ),
+                  ),
                 _PageStrip(
                   session: session,
                   current: _index,

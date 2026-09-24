@@ -14,6 +14,8 @@
   "examFailed": "სამწუხაროდ გამოცდა ვერ ჩააბარეთ",
   "examCorrectLabel": "სწორი",
   "examWrongLabel": "არასწორი",
+  "nextQuestion": "შემდეგი კითხვა",
+  "explanationLabel": "ახსნა",
   "backToHome": "მთავარ გვერდზე დაბრუნება",
   "noQuestionsYet": "ამ კატეგორიისთვის კითხვები ჯერ არ არის ატვირთული."
 }

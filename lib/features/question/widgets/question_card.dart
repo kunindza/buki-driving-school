@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../app/theme.dart';
 import '../../../data/models/localized_text.dart';
 import '../../../data/models/question.dart';
+import '../../../l10n/app_localizations.dart';
 
 /// Displays one question: photo (when it has one), text, answer options and,
 /// once answered, correct/incorrect feedback plus a button that opens the
@@ -30,6 +31,7 @@ class QuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final answered = selectedOptionIndex != null;
     final numbered = question.options.length > 2;
 
@@ -69,6 +71,7 @@ class QuestionCard extends StatelessWidget {
             const SizedBox(height: 4),
             Center(
               child: _InfoButton(
+                label: l10n.explanationLabel,
                 onTap: () => showDialog<void>(
                   context: context,
                   builder: (_) => _ExplanationDialog(
@@ -128,22 +131,44 @@ class _QuestionImage extends StatelessWidget {
   }
 }
 
+/// Pill button that opens the explanation dialog. Labeled (not just an
+/// icon) so it reads as "there's more information here" at a glance,
+/// instead of an unexplained colored circle.
 class _InfoButton extends StatelessWidget {
-  const _InfoButton({required this.onTap});
+  const _InfoButton({required this.label, required this.onTap});
 
+  final String label;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: AppTheme.amber,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(24),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(8),
-        child: const Padding(
-          padding: EdgeInsets.all(8),
-          child: Icon(Icons.info_outline, color: Colors.black87, size: 22),
+        borderRadius: BorderRadius.circular(24),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.lightbulb_rounded,
+                color: Colors.black87,
+                size: 18,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                label,
+                style: const TextStyle(
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

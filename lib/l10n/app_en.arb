@@ -14,6 +14,8 @@
   "examFailed": "Not passed",
   "examCorrectLabel": "correct",
   "examWrongLabel": "wrong",
+  "nextQuestion": "Next question",
+  "explanationLabel": "Explanation",
   "backToHome": "Back to home",
   "noQuestionsYet": "No questions loaded for this category yet."
 }

@@ -45,6 +45,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get examWrongLabel => 'wrong';
 
   @override
+  String get nextQuestion => 'Next question';
+
+  @override
+  String get explanationLabel => 'Explanation';
+
+  @override
   String get backToHome => 'Back to home';
 
   @override

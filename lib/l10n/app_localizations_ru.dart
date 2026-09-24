@@ -45,6 +45,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get examWrongLabel => 'неверно';
 
   @override
+  String get nextQuestion => 'Следующий вопрос';
+
+  @override
+  String get explanationLabel => 'Объяснение';
+
+  @override
   String get backToHome => 'На главную';
 
   @override

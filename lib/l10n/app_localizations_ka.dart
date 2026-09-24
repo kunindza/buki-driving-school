@@ -45,6 +45,12 @@ class AppLocalizationsKa extends AppLocalizations {
   String get examWrongLabel => 'არასწორი';
 
   @override
+  String get nextQuestion => 'შემდეგი კითხვა';
+
+  @override
+  String get explanationLabel => 'ახსნა';
+
+  @override
   String get backToHome => 'მთავარ გვერდზე დაბრუნება';
 
   @override

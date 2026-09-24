@@ -108,21 +108,26 @@ class _QuestionFlowScreenState extends State<QuestionFlowScreen> {
           decoration: const BoxDecoration(
             border: Border(top: BorderSide(color: AppTheme.divider)),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          padding: const EdgeInsets.fromLTRB(8, 8, 12, 8),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
                 onPressed: _index > 0 ? () => setState(() => _index--) : null,
                 icon: const Icon(Icons.chevron_left),
                 iconSize: 30,
               ),
-              IconButton(
-                onPressed: _index < widget.questions.length - 1
-                    ? () => setState(() => _index++)
-                    : null,
-                icon: const Icon(Icons.chevron_right),
-                iconSize: 30,
+              const SizedBox(width: 4),
+              Expanded(
+                child: SizedBox(
+                  height: 44,
+                  child: FilledButton.icon(
+                    onPressed: _index < widget.questions.length - 1
+                        ? () => setState(() => _index++)
+                        : null,
+                    icon: const Icon(Icons.arrow_forward_rounded, size: 20),
+                    label: Text(l10n.nextQuestion),
+                  ),
+                ),
               ),
             ],
           ),

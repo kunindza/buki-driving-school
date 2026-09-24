@@ -166,6 +166,18 @@ abstract class AppLocalizations {
   /// **'wrong'**
   String get examWrongLabel;
 
+  /// No description provided for @nextQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Next question'**
+  String get nextQuestion;
+
+  /// No description provided for @explanationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Explanation'**
+  String get explanationLabel;
+
   /// No description provided for @backToHome.
   ///
   /// In en, this message translates to:
